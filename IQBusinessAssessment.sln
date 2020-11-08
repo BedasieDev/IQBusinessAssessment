@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Send", "..\Send\Send.csproj", "{849F3542-EF12-405B-9A30-0F8FBD6EBE35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Send", "Send\Send.csproj", "{849F3542-EF12-405B-9A30-0F8FBD6EBE35}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Receive", "..\Receive\Receive.csproj", "{C0433E77-284C-457C-8045-7F2D0CF504D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Receive", "Receive\Receive.csproj", "{C0433E77-284C-457C-8045-7F2D0CF504D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendReceiveLib", "..\SendReceiveLib\SendReceiveLib.csproj", "{AA65577B-98F5-4FDD-8773-3A8BFA72474F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendReceiveLib", "SendReceiveLib\SendReceiveLib.csproj", "{AA65577B-98F5-4FDD-8773-3A8BFA72474F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
