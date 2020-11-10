@@ -16,6 +16,7 @@ namespace Send
             var queueConfig = container.QueueConfig;
             var publisherConfig = container.PublisherConfig;
             var messageChannel = container.MessageChannel;
+            var display = container.Display;
 
             Init(queueConfig, publisherConfig, messageChannel);
 
@@ -26,17 +27,17 @@ namespace Send
                     var message = new IQBAssessmentSendCommand<IQBAssessmentMessage>()
                     {
                         OnComplete = message => message
-                    }.Invoke(publisherConfig);
+                    }.Invoke(publisherConfig, display);
 
                     var isPublished = messageChannel.PublishMessage(publisherConfig, channel, JsonConvert.SerializeObject(message));
 
                     if (isPublished)
-                        Console.WriteLine(" [x] Sent: {0}", message.MessageToSend);
+                        display.DisplayMessage($" [x] Sent: {message.MessageToSend}");
                 }
             }
 
-            Console.WriteLine(" [x] Press Enter to Exit.");
-            Console.ReadLine();
+            display.DisplayMessage(" [x] Press Enter to Exit.");
+            display.PromptMessage(string.Empty);
         }
 
         private static void Init(IQueueConfig queueConfig, IPublisherConfig publisherConfig, IMessageChannel messageChannel)

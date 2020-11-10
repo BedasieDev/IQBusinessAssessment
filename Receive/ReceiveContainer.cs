@@ -9,6 +9,7 @@ namespace Receive
         internal IQueueConfig QueueConfig;
         internal IRabbitMQConsumerConfig ConsumerConfig;
         internal IMessageChannel MessageChannel;
+        internal IDisplay Display;
 
         public ReceiveContainer()
         {
@@ -17,6 +18,7 @@ namespace Receive
             QueueConfig = UnityResolver.Resolve<IQueueConfig>();
             ConsumerConfig = UnityResolver.Resolve<IRabbitMQConsumerConfig>();
             MessageChannel = UnityResolver.Resolve<IMessageChannel>();
+            Display = UnityResolver.Resolve<IDisplay>();
         }
     }
 }

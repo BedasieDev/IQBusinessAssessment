@@ -1,23 +1,30 @@
 ﻿using Newtonsoft.Json;
-using RabbitMQ.Client.Events;
+using SendReceiveLib.Interfaces;
 using SendReceiveLib.Models;
 using System;
 using System.Text;
 
 namespace Receive.ReceiveCommands
 {
-    public class IQBAssessmentReceiveCommand
+    public class IQBAssessmentReceiveCommand<T> : BasicCommand
     {
-        public void Invoke(object obj, BasicDeliverEventArgs ea)
+        public Func<bool, T> OnComplete { get; set; }
+
+        public T Invoke(byte[] message, IDisplay display)
         {
-            var body = ea.Body.ToArray();
+            return Execute(() =>
+            {
+                var iqbMessage = JsonConvert.DeserializeObject<IQBAssessmentMessage>(Encoding.UTF8.GetString(message));
 
-            var iqbAssessmentMessage = JsonConvert.DeserializeObject<IQBAssessmentMessage>(Encoding.UTF8.GetString(body));
+                if (string.IsNullOrEmpty(iqbMessage.InputMessage))
+                {
+                    display.DisplayMessage(" [x] No Valid Message Received");
+                    return OnComplete(false);
+                }
 
-            if (string.IsNullOrEmpty(iqbAssessmentMessage.InputMessage))
-                Console.WriteLine(" [x] No Valid Message Received");
-            else
-                Console.WriteLine($" [x] Received: Salut {iqbAssessmentMessage.InputMessage}, je suis ton père!");
+                display.DisplayMessage($" [x] Received: Salut {iqbMessage.InputMessage}, je suis ton père!");
+                return OnComplete(true);
+            });
         }
     }
 }

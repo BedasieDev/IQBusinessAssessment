@@ -9,6 +9,7 @@ namespace Send
         internal IQueueConfig QueueConfig;
         internal IRabbitMQPublisherConfig PublisherConfig;
         internal IMessageChannel MessageChannel;
+        internal IDisplay Display;
 
         public SendContainer()
         {
@@ -17,6 +18,7 @@ namespace Send
             QueueConfig = UnityResolver.Resolve<IQueueConfig>();
             PublisherConfig = UnityResolver.Resolve<IRabbitMQPublisherConfig>();
             MessageChannel = UnityResolver.Resolve<IMessageChannel>();
+            Display = UnityResolver.Resolve<IDisplay>();
         }
     }
 }
